@@ -209,74 +209,78 @@ class EveryDaySchedule extends StatelessWidget {
                                       ),
                                     ),
                                     const SizedBox(width: 20),
-                                    Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Wrap(
-                                          children: [
-                                            Text(
-                                              traviCubit.events[index].name
-                                                  .toString(),
-                                              style: textStyle(
-                                                MediaQuery.of(context).size.width <
-                                                        380
-                                                    ? 13
-                                                    : 20,
-                                                const Color.fromRGBO(37, 40, 71, 1),
-                                                FontWeight.w700,
+                                    Flexible(
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Row(
+                                            children: [
+                                              Expanded(
+                                                child: Text(
+                                                  traviCubit.events[index].name
+                                                      .toString(),
+                                                  style: textStyle(
+                                                    MediaQuery.of(context).size.width <
+                                                            380
+                                                        ? 13
+                                                        : 20,
+                                                    const Color.fromRGBO(37, 40, 71, 1),
+                                                    FontWeight.w700,
+                                                  ),
+                                                ),
                                               ),
-                                            ),
-                                          ],
-                                        ),
-                                        Wrap(
-                                          children: [
-                                            Text(
-                                              traviCubit
-                                                  .events[index].descreption
-                                                  .toString(),
-                                              style: textStyle(
-                                                MediaQuery.of(context)
-                                                            .size
-                                                            .width <
-                                                        380
-                                                    ? 8
-                                                    : 12,
-                                                const Color.fromRGBO(
-                                                    27, 27, 27, 1),
-                                                FontWeight.w700,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        SizedBox(
-                                          height: MediaQuery.of(context)
-                                                      .size
-                                                      .width >
-                                                  700
-                                              ? 0
-                                              : 10,
-                                        ),
-                                        Row(
-                                          children: [
-                                            const Icon(
-                                              Icons.watch_later,
-                                              color: Colors.red,
-                                            ),
-                                            Text(
-                                              traviCubit.events[index].timing
-                                                  .toString(),
-                                              style: textStyle(
-                                                  12,
+                                            ],
+                                          ),
+                                          Wrap(
+                                            children: [
+                                              Text(
+                                                traviCubit
+                                                    .events[index].descreption
+                                                    .toString(),
+                                                style: textStyle(
+                                                  MediaQuery.of(context)
+                                                              .size
+                                                              .width <
+                                                          380
+                                                      ? 8
+                                                      : 12,
                                                   const Color.fromRGBO(
-                                                      0, 0, 0, 1),
-                                                  FontWeight.w700),
-                                            ),
-                                          ],
-                                        ),
-                                      ],
+                                                      27, 27, 27, 1),
+                                                  FontWeight.w700,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          SizedBox(
+                                            height: MediaQuery.of(context)
+                                                        .size
+                                                        .width >
+                                                    700
+                                                ? 0
+                                                : 10,
+                                          ),
+                                          Row(
+                                            children: [
+                                              const Icon(
+                                                Icons.watch_later,
+                                                color: Colors.red,
+                                              ),
+                                              Text(
+                                                traviCubit.events[index].timing
+                                                    .toString(),
+                                                style: textStyle(
+                                                    12,
+                                                    const Color.fromRGBO(
+                                                        0, 0, 0, 1),
+                                                    FontWeight.w700),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ],
                                 ),

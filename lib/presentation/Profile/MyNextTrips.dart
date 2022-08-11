@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project_one_maybe_clean_architecture/data/Models/MyCurrentTripsModel.dart';
+import 'package:project_one_maybe_clean_architecture/presentation/Home/AllTrips.dart';
 import 'package:project_one_maybe_clean_architecture/presentation/Profile/Bloc/States.dart';
 
 import '../Cubit/Cubit.dart';
@@ -58,8 +59,8 @@ class MyNextTrips extends StatelessWidget {
                         height: MediaQuery.of(context).size.height / 1.3,
                         child: ListView.separated(
                           itemBuilder: (context, index) {
-                            return day(
-                                context, traviProfileBloc.currentTrips[index]);
+                            return AllTrips(
+                                offered: traviProfileBloc.currentTrips[index]);
                           },
                           separatorBuilder: (context, index) =>
                               const SizedBox(height: 15),

@@ -6,13 +6,12 @@ import 'package:flutter_stripe/flutter_stripe.dart';
 import 'package:http/http.dart' as http;
 import 'package:project_one_maybe_clean_architecture/presentation/Cubit/Cubit.dart';
 import 'package:project_one_maybe_clean_architecture/presentation/Cubit/states.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 
 class Payment extends StatelessWidget {
   final String amount;
   final int id;
 
-  Payment({Key? key, required this.amount,required this.id}) : super(key: key);
+  Payment({Key? key, required this.amount, required this.id}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +32,9 @@ class Payment extends StatelessWidget {
             body: Center(
               child: InkWell(
                 onTap: () async {
-                  await TraviCubit.get(context).regiterTrip(id: id).then((value){
+                  await TraviCubit.get(context)
+                      .regiterTrip(id: id)
+                      .then((value) {
                     makePayment(context);
                   });
                 },
@@ -76,7 +77,7 @@ class Payment extends StatelessWidget {
                   merchantCountryCode: 'DE',
                   testEnv: true,
                 ),
-                style: ThemeMode.dark,
+                style: ThemeMode.system,
                 appearance: const PaymentSheetAppearance(
                   colors: PaymentSheetAppearanceColors(
                     background: Colors.lightBlue,

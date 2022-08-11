@@ -7,7 +7,7 @@ class ShowResult extends StatelessWidget {
   final List<TripModel> listSearch;
   final traviCubit;
 
-  const ShowResult(
+  const ShowResult( 
       {Key? key, required this.listSearch, required this.traviCubit})
       : super(key: key);
 
@@ -57,7 +57,7 @@ class ShowResult extends StatelessWidget {
             const EdgeInsets.only(top: 10, right: 20, left: 20, bottom: 20),
         child: Container(
           width: MediaQuery.of(context).size.width,
-          height: 130,
+          height: 170,
           decoration: const BoxDecoration(
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(10),
@@ -97,136 +97,138 @@ class ShowResult extends StatelessWidget {
                 const SizedBox(
                   width: 10,
                 ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width < 355
-                          ? MediaQuery.of(context).size.width / 2.1
-                          : MediaQuery.of(context).size.width / 1.8,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            listSearch[index].name.toString(),
-                            style: TextStyle(
-                                color: const Color.fromRGBO(241, 107, 82, 1),
-                                fontWeight: FontWeight.w700,
-                                fontSize:
-                                    MediaQuery.of(context).size.width < 355
-                                        ? 10
-                                        : 22),
-                          ),
-                          InkWell(
-                            onTap: () {
-                              traviCubit.likeTrip(listSearch[index].id);
-                            },
-                            child: Icon(
-                              Icons.favorite,
-                              size: MediaQuery.of(context).size.width < 355
-                                  ? 10
-                                  : 22,
-                              color: const Color.fromRGBO(241, 107, 82, 1),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-                    SizedBox(
-                      height: 30,
-                      width: MediaQuery.of(context).size.width / 2.7,
-                      child: Wrap(
-                        children: [
-                          Text(
-                            listSearch[index].about.toString(),
-                            style: const TextStyle(
-                              color: Color.fromRGBO(37, 40, 71, 0.9),
-                              fontWeight: FontWeight.w700,
-                              fontSize: 8,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width < 355
-                          ? MediaQuery.of(context).size.width / 2
-                          : MediaQuery.of(context).size.width / 1.8,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Icon(
-                            Icons.person,
-                            size: 12,
-                            color: Color.fromRGBO(241, 107, 82, 1),
-                          ),
-                          Text(
-                            listSearch[index].total.toString(),
-                            style: const TextStyle(
-                              fontWeight: FontWeight.w700,
-                              fontSize: 10,
-                              color: Color.fromRGBO(37, 40, 71, 1),
-                            ),
-                          ),
-                          const Icon(
-                            Icons.shop_rounded,
-                            size: 12,
-                            color: Color.fromRGBO(241, 107, 82, 1),
-                          ),
-                          Text(
-                            '${listSearch[index].rest} day',
-                            style: const TextStyle(
-                              fontWeight: FontWeight.w700,
-                              fontSize: 10,
-                              color: Color.fromRGBO(37, 40, 71, 1),
-                            ),
-                          ),
-                          Icon(
-                            size: 12,
-                            Icons.groups_rounded,
-                            color: Color.fromRGBO(241, 107, 82, 1),
-                          ),
-                          Text(
-                            listSearch[index].type.toString(),
-                            style: const TextStyle(
-                              fontWeight: FontWeight.w700,
-                              fontSize: 10,
-                              color: Color.fromRGBO(37, 40, 71, 1),
-                            ),
-                          ),
-                          Container(
-                            width: MediaQuery.of(context).size.width < 355
-                                ? MediaQuery.of(context).size.width / 6
-                                : MediaQuery.of(context).size.width / 5,
-                            height: 30,
-                            decoration: const BoxDecoration(
-                              borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(30),
-                                bottomLeft: Radius.circular(30),
+                Flexible(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width < 355
+                            ? MediaQuery.of(context).size.width / 2.1
+                            : MediaQuery.of(context).size.width / 1.8,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Expanded(
+                              child: Text(
+                                listSearch[index].name.toString(),
+                                style: TextStyle(
+                                    color: const Color.fromRGBO(241, 107, 82, 1),
+                                    fontWeight: FontWeight.w700,
+                                    fontSize:
+                                        MediaQuery.of(context).size.width < 355
+                                            ? 10
+                                            : 18),
                               ),
-                              color: Color.fromRGBO(241, 107, 82, 1),
-                              boxShadow: [],
                             ),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  '${listSearch[index].price}\$',
-                                  style: const TextStyle(
-                                      fontSize: 13,
-                                      fontWeight: FontWeight.w700,
-                                      color: Colors.white),
-                                ),
-                              ],
+                            InkWell(
+                              onTap: () {
+                                traviCubit.likeTrip(listSearch[index].id);
+                              },
+                              child: Icon(
+                                Icons.favorite,
+                                size: MediaQuery.of(context).size.width < 355
+                                    ? 10
+                                    : 22,
+                                color: const Color.fromRGBO(241, 107, 82, 1),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+ 
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              listSearch[index].about.toString(),
+                              style: const TextStyle(
+                                color: Color.fromRGBO(37, 40, 71, 0.9),
+                                fontWeight: FontWeight.w700,
+                                fontSize: 8,
+                              ),
                             ),
                           ),
                         ],
                       ),
-                    ),
-                  ],
+                      const SizedBox(height: 10),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width < 355
+                            ? MediaQuery.of(context).size.width / 2
+                            : MediaQuery.of(context).size.width / 1.8,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Icon(
+                              Icons.person,
+                              size: 12,
+                              color: Color.fromRGBO(241, 107, 82, 1),
+                            ),
+                            Text(
+                              listSearch[index].total.toString(),
+                              style: const TextStyle(
+                                fontWeight: FontWeight.w700,
+                                fontSize: 10,
+                                color: Color.fromRGBO(37, 40, 71, 1),
+                              ),
+                            ),
+                            const Icon(
+                              Icons.shop_rounded,
+                              size: 12,
+                              color: Color.fromRGBO(241, 107, 82, 1),
+                            ),
+                            Text(
+                              '${listSearch[index].rest} day',
+                              style: const TextStyle(
+                                fontWeight: FontWeight.w700,
+                                fontSize: 10,
+                                color: Color.fromRGBO(37, 40, 71, 1),
+                              ),
+                            ),
+                            Icon(
+                              size: 12,
+                              Icons.groups_rounded,
+                              color: Color.fromRGBO(241, 107, 82, 1),
+                            ),
+                            Text(
+                              listSearch[index].type.toString(),
+                              style: const TextStyle(
+                                fontWeight: FontWeight.w700,
+                                fontSize: 10,
+                                color: Color.fromRGBO(37, 40, 71, 1),
+                              ),
+                            ),
+                            Container(
+                              width: MediaQuery.of(context).size.width < 355
+                                  ? MediaQuery.of(context).size.width / 6
+                                  : MediaQuery.of(context).size.width / 5,
+                              height: 30,
+                              decoration: const BoxDecoration(
+                                borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(30),
+                                  bottomLeft: Radius.circular(30),
+                                ),
+                                color: Color.fromRGBO(241, 107, 82, 1),
+                                boxShadow: [],
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    '${listSearch[index].price}\$',
+                                    style: const TextStyle(
+                                        fontSize: 13,
+                                        fontWeight: FontWeight.w700,
+                                        color: Colors.white),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
