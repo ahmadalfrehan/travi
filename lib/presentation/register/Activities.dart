@@ -1,11 +1,11 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project_one_maybe_clean_architecture/presentation/Cubit/Cubit.dart';
 import 'package:project_one_maybe_clean_architecture/presentation/Cubit/states.dart';
 import 'package:project_one_maybe_clean_architecture/presentation/Home/HomeScreen.dart';
-import 'package:project_one_maybe_clean_architecture/presentation/login/login_screen.dart';
+import 'package:project_one_maybe_clean_architecture/presentation/sharedHELper.dart';
+
+import '../../main.dart';
 
 class Activities extends StatelessWidget {
   final bool isDelete;
@@ -37,21 +37,19 @@ class Activities extends StatelessWidget {
           }
           if (state is PostActivitySuccessStates &&
               state.message.contains("User successfully selected activity")) {
+            Shard.saveData(key: 'isActivity', value: false).then((value) {
+              isActivity = false;
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => const HomeScreen(),
+                ),
+              );
+            });
             ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(
                 content: Text('Successfully Added Activity'),
                 backgroundColor: Colors.green,
               ),
-            );
-            Timer(
-              const Duration(seconds: 1),
-              () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => HomeScreen(),
-                  ),
-                );
-              },
             );
           }
         },
@@ -120,7 +118,8 @@ class Activities extends StatelessWidget {
                                             .activitiesPost
                                             .containsKey(TraviCubit.get(context)
                                                 .activity[index])
-                                        ? TraviCubit.get(context).removeActivity(
+                                        ? TraviCubit.get(context)
+                                            .removeActivity(
                                             TraviCubit.get(context)
                                                 .activity[index],
                                           )
@@ -128,7 +127,8 @@ class Activities extends StatelessWidget {
                                             name: TraviCubit.get(context)
                                                 .activity[index],
                                             added: true);
-                                    print(TraviCubit.get(context).activitiesPost);
+                                    print(
+                                        TraviCubit.get(context).activitiesPost);
                                   },
                                   child: Text(
                                     TraviCubit.get(context).activity[index],

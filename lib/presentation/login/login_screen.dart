@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project_one_maybe_clean_architecture/data/Models/UserModel.dart';
 import 'package:project_one_maybe_clean_architecture/main.dart';
+import 'package:project_one_maybe_clean_architecture/presentation/Home/HomeScreen.dart';
 import 'package:project_one_maybe_clean_architecture/presentation/register/Activities.dart';
 
 import '../register/register_screen.dart';
@@ -47,7 +48,7 @@ class LoginScreen extends StatelessWidget {
               access_token = state.uId;
               Navigator.of(context).pushAndRemoveUntil(
                 MaterialPageRoute(
-                  builder: (context) => const Activities(isDelete: false),
+                  builder: (context) => isActivity? const Activities(isDelete: false):const HomeScreen(),
                 ),
                 (route) => false,
               );

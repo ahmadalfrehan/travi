@@ -7,7 +7,7 @@ import 'package:project_one_maybe_clean_architecture/presentation'
 import 'package:project_one_maybe_clean_architecture/presentation/Games/SnackGame.dart';
 import 'package:project_one_maybe_clean_architecture/presentation/Games/XOGame.dart';
 
-import 'CurtomSomeThingIdonotAboutWhatIsIt.dart';
+import 'CurtomSomeThingIdonotKnowAboutWhatIsIt.dart';
 import 'SliverAppBarfor.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -94,7 +94,7 @@ class HomeScreen extends StatelessWidget {
                                     const SizedBox(height: 11),
                                 itemBuilder: (context, index) {
                                   if (traviCubit.trips[0].offered != null) {
-                                    return CurtomSomeThingIdonotAboutWhatIsIt(
+                                    return CurtomSomeThingIdonotKnowAboutWhatIsIt(
                                       category: traviCubit.category[index],
                                       homeTripsModel: traviCubit.trips[0],
                                     );

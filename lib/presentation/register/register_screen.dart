@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project_one_maybe_clean_architecture/data/Models/UserModel.dart';
 
+import '../../main.dart';
 import '../login/login_screen.dart';
 import 'Activities.dart';
 import 'cubit/cubit.dart';
@@ -44,6 +45,7 @@ class RegisterScreen extends StatelessWidget {
           }
           if (state is RegisterSuccessState &&
               state.success.contains("User successfully registered")) {
+            isActivity = true;
             Navigator.of(context).push(
               MaterialPageRoute(
                 builder: (context) => LoginScreen(),

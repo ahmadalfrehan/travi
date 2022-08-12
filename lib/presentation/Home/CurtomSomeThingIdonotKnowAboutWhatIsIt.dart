@@ -4,11 +4,11 @@ import 'package:project_one_maybe_clean_architecture/data/Models/HomeTripsModel.
 import '../tripOverview/TripOverView.dart';
 import 'SeeAll.dart';
 
-class CurtomSomeThingIdonotAboutWhatIsIt extends StatelessWidget {
+class CurtomSomeThingIdonotKnowAboutWhatIsIt extends StatelessWidget {
   final HomeTripsModel homeTripsModel;
   final String category;
 
-  CurtomSomeThingIdonotAboutWhatIsIt(
+  CurtomSomeThingIdonotKnowAboutWhatIsIt(
       {Key? key, required this.homeTripsModel, required this.category})
       : super(key: key);
 
@@ -103,8 +103,9 @@ class CurtomSomeThingIdonotAboutWhatIsIt extends StatelessWidget {
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => TripOverView(
-                                      id: homeOffersAndOthersCategoryTrips![
-                                          index]['id'],),
+                                    id: homeOffersAndOthersCategoryTrips![index]
+                                        ['id'],
+                                  ),
                                 ),
                               );
                             },
@@ -216,46 +217,72 @@ class CurtomSomeThingIdonotAboutWhatIsIt extends StatelessWidget {
                                         ),
                                       ],
                                     ),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
+                                    Column(
                                       children: [
-                                        Expanded(
-                                          child: Text(
-                                            homeOffersAndOthersCategoryTrips![
-                                                    index]['about']
-                                                .toString(),
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.w700,
-                                              fontSize:
-                                                  MediaQuery.textScaleFactorOf(
-                                                          context) *
-                                                      8.2,
-                                            ),
-                                          ),
-                                        ),
-                                        Container(
-                                          decoration: const BoxDecoration(
-                                            borderRadius: BorderRadius.only(
-                                              topLeft: Radius.circular(30),
-                                              bottomLeft: Radius.circular(30),
-                                            ),
-                                          ),
-                                          height: 20,
-                                          width: 120,
-                                          child: ListView.builder(
-                                            scrollDirection: Axis.horizontal,
-                                            itemCount:
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Expanded(
+                                              child: Text(
                                                 homeOffersAndOthersCategoryTrips![
-                                                    index]['reiteration'],
-                                            itemBuilder: (context, index) {
-                                              return const Icon(
-                                                Icons.star,
-                                                color: Colors.amber,
-                                              );
-                                            },
-                                          ),
+                                                                index]['about']
+                                                            .toString()
+                                                            .length <=
+                                                        50
+                                                    ? homeOffersAndOthersCategoryTrips![
+                                                            index]['about']
+                                                        .toString()
+                                                    : homeOffersAndOthersCategoryTrips![
+                                                            index]['about']
+                                                        .toString()
+                                                        .trim()
+                                                        .replaceRange(
+                                                            50,
+                                                            homeOffersAndOthersCategoryTrips![
+                                                                            index]
+                                                                        [
+                                                                        'about']
+                                                                    .toString()
+                                                                    .length -
+                                                                1,
+                                                            '...'),
+                                                style: TextStyle(
+                                                  overflow: TextOverflow.clip,
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.w700,
+                                                  fontSize: MediaQuery
+                                                          .textScaleFactorOf(
+                                                              context) *
+                                                      8.2,
+                                                ),
+                                              ),
+                                            ),
+                                            Container(
+                                              decoration: const BoxDecoration(
+                                                borderRadius: BorderRadius.only(
+                                                  topLeft: Radius.circular(30),
+                                                  bottomLeft:
+                                                      Radius.circular(30),
+                                                ),
+                                              ),
+                                              height: 20,
+                                              width: 120,
+                                              child: ListView.builder(
+                                                scrollDirection:
+                                                    Axis.horizontal,
+                                                itemCount:
+                                                    homeOffersAndOthersCategoryTrips![
+                                                        index]['reiteration'],
+                                                itemBuilder: (context, index) {
+                                                  return const Icon(
+                                                    Icons.star,
+                                                    color: Colors.amber,
+                                                  );
+                                                },
+                                              ),
+                                            ),
+                                          ],
                                         ),
                                       ],
                                     ),

@@ -10,10 +10,12 @@ var viewLogin = false;
 String access_token = '';
 String imageUrl = '';
 
+bool isActivity = true;
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Stripe.publishableKey =
-      'pk_test_51L1bhoIE8O8WnGWKdbrNDV3sTI3gpvY415bQSghxHEbZHtIztZq7lfR7bV5pHUcAhQ6keGfJLde6Q3ejddMxxnSj00cyreGB9A';
+      'pk_test_51LVte0CT7aJjwuQy6INXL6l0fnzC9iIJC55oqfsLyYLp2gu0vPBED0iDEs2zAaxhamu5Hz1ALtZDW0CiBLuFeZ1N00uKnRshkJ';
 
   Stripe.merchantIdentifier = 'any string works';
 
@@ -25,6 +27,10 @@ void main() async {
   if (Shard.sharedprefrences!.getBool('pageView') != null) {
     viewPageView = Shard.sharedprefrences!.getBool('pageView')!;
   }
+  if (Shard.sharedprefrences!.getBool('isActivity') != null) {
+    isActivity = Shard.sharedprefrences!.getBool('isActivity')!;
+  }
+
   if (Shard.sharedprefrences!.getString('access_token') != null) {
     access_token = Shard.sharedprefrences!.getString('access_token')!;
     print(access_token);
@@ -43,11 +49,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.orange),
-      home: viewLogin
-          ? const HomeScreen()
-          : viewPageView
-              ? LoginScreen()
-              : SpllashScreen(),
+      home: SpllashScreen(),
     );
   }
 }
