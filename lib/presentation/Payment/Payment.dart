@@ -153,7 +153,7 @@ class Payment extends StatelessWidget {
         body: body,
         headers: {
           'Authorization':
-              'Bearer sk_test_51LVte0CT7aJjwuQyWaJ3IJ2fMt7o4koTnE3IvQqHzrlBSQyVRFEQJ4P93Qb6nIOHxI1Dh7uKp5SWgWQBTT3JSITl00xPBvnvDh',
+              'Bearer ',
           'Content-Type': 'application/x-www-form-urlencoded'
         }).then((value) {
       debugPrint(value.body);
