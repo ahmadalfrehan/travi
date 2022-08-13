@@ -15,7 +15,7 @@ bool isActivity = true;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Stripe.publishableKey =
-      'pk_test_51LVte0CT7aJjwuQy6INXL6l0fnzC9iIJC55oqfsLyYLp2gu0vPBED0iDEs2zAaxhamu5Hz1ALtZDW0CiBLuFeZ1N00uKnRshkJ';
+      '';
 
   Stripe.merchantIdentifier = 'any string works';
 
