@@ -1,223 +1,148 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 
-import '../presentation/Cubit/Cubit.dart';
-import '../presentation/Cubit/states.dart';
-import '../presentation/Profile/Profile.dart';
+import '../../Debug/log.dart';
+import '../getx/home/teacher/timetable/timetable_controller.dart';
 
-class NoThing extends StatelessWidget {
-  const NoThing({Key? key}) : super(key: key);
+class MonthDetails extends StatefulWidget {
+  const MonthDetails({Key? key}) : super(key: key);
+
+  @override
+  State<MonthDetails> createState() => _MonthDetailsState();
+}
+
+class _MonthDetailsState extends State<MonthDetails> {
+  int selectedMonth = 1;
+  final controller = Get.put(TimeTableController());
+  String selectedYear = '2020';
+
+  var list = [];
+  bool isSelected = false;
+  List months = [
+    'Enero',
+    'Febrero',
+    'Marzo',
+    'Abril',
+    'Mayo',
+    'Junio',
+    'Julio',
+    'Agosto',
+    'Sept',
+    'Oct',
+    'Nov',
+    'Dic'
+  ];
+  List days = [
+    'HORA',
+    'LUNES',
+    'MARTES',
+    'MIE’RCOLES',
+    'JUEVES',
+    'VIERNES',
+    'DOMINGO',
+    'SA’BADO',
+  ];
+  List semana = [
+    'Semana1',
+    'Semana2',
+    'Semana3',
+    'Semana4',
+    'Semana5',
+    'Semana6',
+  ];
+  List hours = [
+    '6:00',
+    '6:30',
+    '7:00',
+    '7:30',
+    '8:00',
+    '8:30',
+    '9:00',
+    '9:30',
+    '10:00',
+    '10:30',
+    '11:00',
+    '11:30',
+    '12:00',
+    '12:30',
+    '13:00',
+    '13:30',
+    '14:00',
+    '14:30',
+    '15:00',
+    '15:30',
+    '16:00',
+    '16:30',
+    '17:00',
+    '17:30',
+    '18:00',
+    '18:30',
+    '19:00',
+    '19:30',
+    '20:00',
+    '20:30',
+    '21:00',
+    '21:30',
+    '22:00',
+    '22:30',
+    '23:00',
+  ];
+  var sizeWidth = 60.0, sizeHeight = 30.0;
+
+  var isWeek = false;
+  var isDays = false;
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (BuildContext context) => TraviCubit(),
-      child: BlocConsumer<TraviCubit, TraviStates>(
-        listener: (context, state) {},
-        builder: (context, state) {
-          TraviCubit t = TraviCubit.get(context);
-          return SliverAppBar(
-            shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(25),
-                bottomRight: Radius.circular(25),
+    return Table(
+      border: TableBorder.all(),
+      // Allows to add a border decoration around your table
+      children: [
+        TableRow(
+          children: [
+            for (int i = 0; i < days.length; i++) Text(days[i]),
+          ],
+        ),
+        for (int i = 0; i < hours.length; i++)
+          TableRow(
+            children: [
+              Container(
+                alignment: Alignment.center,
+                width: sizeWidth,
+                height: sizeHeight,
+                color: const Color.fromRGBO(196, 235, 251, 1),
+                child: Text(hours[i]),
               ),
-            ),
-            centerTitle: false,
-            titleSpacing: 1,
-            backgroundColor: const Color.fromRGBO(28, 30, 55, 1),
-            expandedHeight: MediaQuery.of(context).size.height / 2.8,
-            pinned: true,
-            floating: false,
-            flexibleSpace: LayoutBuilder(
-              builder: (BuildContext context, BoxConstraints constraints) {
-                t.top = t.changeConstraintsBiggestHeight(
-                    t.top, constraints.biggest.height);
-                return FlexibleSpaceBar(
-                  centerTitle: false,
-                  background: Image.asset(
-                    'assets/images/Rectangle 22.png',
-                    fit: BoxFit.fill,
-                  ),
-                  expandedTitleScale: 1.2,
-                  titlePadding: const EdgeInsets.fromLTRB(45, 0, 10, 0),
-                  title: t.top > 180
-                      ? Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            SizedBox(
-                              height: MediaQuery.of(context).size.height < 660
-                                  ? 10
-                                  : 70,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                InkWell(
-                                  child: const Icon(Icons.menu,
-                                      color: Colors.orange, size: 20),
-                                  onTap: () {
-                                    Navigator.of(context).push(
-                                      MaterialPageRoute(
-                                        builder: (context) => Profile(),
-                                      ),
-                                    );
-                                  },
-                                ),
-                                const SizedBox(
-                                  width: 200,
-                                ),
-                                InkWell(
-                                  onTap: () {
-                                    Navigator.of(context).push(
-                                      MaterialPageRoute(
-                                        builder: (context) => Profile(),
-                                      ),
-                                    );
-                                  },
-                                  child: const CircleAvatar(
-                                    maxRadius: 20,
-                                    backgroundImage:
-                                        AssetImage('assets/images/A.jpg'),
-                                  ),
-                                ),
-                                SizedBox(
-                                  height:
-                                      MediaQuery.of(context).size.height < 700
-                                          ? 4
-                                          : 20,
-                                ),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                Text(
-                                  'Hello jhon',
-                                  style: TextStyle(
-                                    color:
-                                        const Color.fromRGBO(255, 217, 132, 1),
-                                    fontSize:
-                                        MediaQuery.of(context).size.height < 700
-                                            ? 13
-                                            : 18,
-                                    fontWeight: FontWeight.w700,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              height: MediaQuery.of(context).size.height < 660
-                                  ? 10
-                                  : 30,
-                            ),
-                            Row(
-                              children: [
-                                Text(
-                                  'Where would you like\nto go ?',
-                                  style: TextStyle(
-                                    color:
-                                        const Color.fromRGBO(255, 255, 255, 1),
-                                    fontSize:
-                                        MediaQuery.of(context).size.height < 700
-                                            ? 8
-                                            : 15,
-                                    fontWeight: FontWeight.w700,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            SizedBox(
-                              height: MediaQuery.of(context).size.height < 700
-                                  ? 4
-                                  : 15,
-                            ),
-                            Container(
-                              height: 40,
-                              child: Row(
-                                children: [
-                                  Flexible(
-                                    child: InkWell(
-                                      onTap: () {},
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    width: 5,
-                                  ),
-                                  const CircleAvatar(
-                                    maxRadius: 25,
-                                    child: Icon(
-                                      Icons.search,
-                                      size: 30,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        )
-                      : Container(),
-                );
-              },
-            ),
-          );
-        },
+              container(days[1], i + 0),
+              container(days[2], i + 1),
+              container(days[3], i + 2),
+              container(days[4], i + 3),
+              container(days[5], i + 4),
+              container(days[6], i + 5),
+              container(days[7], i + 6),
+            ],
+          ),
+      ],
+    );
+  }
+
+  container(String day, int id) {
+    return InkWell(
+      onTap: () {
+        setState(() {
+          list.add(id);
+          isSelected == true ? isSelected = false : isSelected = true;
+          log(isSelected);
+        });
+      },
+      child: Container(
+        width: sizeWidth,
+        height: sizeHeight,
+        color: list.contains(id)
+            ? const Color.fromRGBO(196, 235, 251, 1)
+            : const Color.fromRGBO(147, 197, 250, 1),
       ),
     );
   }
 }
-
-var t = [
-  {
-    "id": 1,
-    "name": "Saturday",
-    "description": "cooking, tennis",
-    "day": "2022-02-05 00:00:00",
-    "dailyprogram_id": 1,
-    "created_at": "2022-08-07T22:05:12.000000Z",
-    "updated_at": "2022-08-07T22:05:12.000000Z",
-    "events": [
-      {
-        "id": 1,
-        "name": "rest in nature",
-        "description": "running",
-        "timing": "11:30 to 12:30",
-        "image":
-            "https://images.pexels.com/photos/12577819/pexels-photo-12577819.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
-        "dateday_id": 1,
-        "created_at": "2022-08-07T22:21:58.000000Z",
-        "updated_at": "2022-08-07T22:21:58.000000Z"
-      },
-      {
-        "id": 2,
-        "name": "slow write",
-        "description": "we are going to write slowly",
-        "timing": "11:30 to 02:30",
-        "image":
-            "https://images.pexels.com/photos/12586694/pexels-photo-12586694.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
-        "dateday_id": 1,
-        "created_at": "2022-08-07T22:23:12.000000Z",
-        "updated_at": "2022-08-07T22:23:12.000000Z"
-      }
-    ]
-  },
-  {
-    "id": 2,
-    "name": "Sunday",
-    "description": "running",
-    "day": "2022-02-06 00:00:00",
-    "dailyprogram_id": 1,
-    "created_at": "2022-08-07T22:05:42.000000Z",
-    "updated_at": "2022-08-07T22:05:42.000000Z",
-    "events": []
-  },
-  {
-    "id": 3,
-    "name": "Wednesday",
-    "description": "music, swim",
-    "day": "2022-02-09 00:00:00",
-    "dailyprogram_id": 1,
-    "created_at": "2022-08-07T22:06:04.000000Z",
-    "updated_at": "2022-08-07T22:06:04.000000Z",
-    "events": []
-  }
-];
