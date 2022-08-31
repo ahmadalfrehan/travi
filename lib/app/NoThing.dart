@@ -145,7 +145,74 @@ class _MonthDetailsState extends State<MonthDetails> {
       ),
     );
   }
-}*/
+}
+
+  var list = [];
+
+  calculate() {
+    for (int i = 0; i < controller.availableTimes.length; i++) {
+      //list.add(controller.availableTimes[i].id);
+    }
+    //log(list.toString());
+    int c = 0;
+    for (int i = 0; i < controller.hours.length; i++) {
+      for (int j = 1; j < 8; j++) {
+        log((j + c).toString());
+      }
+      c = c + 7;
+      print(c);
+    }
+  }
+
+  _monthDetails(String monthName) {
+    list.clear();
+    for (int i = 0; i < controller.availableTimes.length; i++) {
+      list.add(controller.availableTimes[i].id);
+    }
+    return Table(
+      border: TableBorder.all(),
+      children: [
+        TableRow(
+          children: [
+            for (int i = 0; i < controller.days.length; i++)
+              Text(controller.days[i]),
+          ],
+        ),
+        for (int i = 0, c = 0; i < controller.hours.length; i++, c = c + 7)
+          TableRow(
+            children: [
+              Container(
+                alignment: Alignment.center,
+                width: sizeWidth,
+                height: sizeHeight,
+                color: const Color.fromRGBO(196, 235, 251, 1),
+                child: Text(controller.hours[i]),
+              ),
+              for (int j = 1; j < 8; j++) container(controller.days[j], j + c),
+            ],
+          ),
+      ],
+    );
+  }
+
+  container(String day, int id1) {
+    //  print(id1);
+    return InkWell(
+      onTap: () {
+        setState(() {});
+      },
+      child: Container(
+        width: sizeWidth,
+        height: sizeHeight,
+        color: list.contains(id1)
+            ? const Color.fromRGBO(147, 197, 250, 1)
+            : const Color.fromRGBO(196, 235, 251, 1),
+      ),
+    );
+  }
+
+
+*/
 /*
 SingleChildScrollView(
       child: SizedBox(
