@@ -147,22 +147,150 @@ class _MonthDetailsState extends State<MonthDetails> {
   }
 }
 //**
-container(String day, int id1) {
-    return InkWell(
-      onTap: () {
-        setState(() {
-          list.contains(id1) ? widget.list.remove(day) : widget.list.add(day);
-          list.contains(id1) ? list.remove(id1) : list.add(id1);
-          log(widget.list);
-        });
-      },
-      child: Container(
-        width: sizeWidth,
-        height: sizeHeight,
-        color: list.contains(id1)
-            ? const Color.fromRGBO(147, 197, 250, 1)
-            : const Color.fromRGBO(196, 235, 251, 1),
+SingleChildScrollView(
+      child: SizedBox(
+        height: MediaQuery.of(context).size.height > 700
+            ? MediaQuery.of(context).size.height / 1.6
+            : MediaQuery.of(context).size.height / 2.3,
+        width: MediaQuery.of(context).size.width > 550
+            ? MediaQuery.of(context).size.width
+            : MediaQuery.of(context).size.width / 1.09,
+        child: ListView.builder(
+            itemCount: 1,
+            shrinkWrap: true,
+            scrollDirection: Axis.horizontal,
+            physics: const BouncingScrollPhysics(),
+            itemBuilder: (context, index) {
+              return Column(
+                children: [
+                  Text(
+                    months[selectedMonth] + '\u{25BC}',
+                    style: const TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.w700,
+                      color: Colors.black,
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height / 2,
+                    width: MediaQuery.of(context).size.width,
+                    child: ListView.separated(
+                      separatorBuilder: (context, index) {
+                        return const SizedBox(height: 10);
+                      },
+                      physics: const BouncingScrollPhysics(),
+                      itemCount: controller.availableTimes.length,
+                      scrollDirection: Axis.vertical,
+                      itemBuilder: (context, index1) {
+                        return Row(
+                          children: [
+                            Column(
+                              children: [
+                                if (index1 == 0)
+                                  SizedBox(
+                                    width: sizeWidth,
+                                    child: const Text(
+                                      'Hora',
+                                      style: TextStyle(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w700,
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                  ),
+                                Container(
+                                  alignment: Alignment.center,
+                                  width: sizeWidth,
+                                  height:
+                                      index1 == 0 ? sizeHeight * 2 : sizeHeight,
+                                  color:
+                                      // ignore: unrelated_type_equality_checks
+                                      controller.availableTimes[index1]
+                                                  .is_available ==
+                                              true
+                                          ? const Color.fromRGBO(
+                                              196, 235, 251, 1)
+                                          : const Color.fromRGBO(
+                                              147, 197, 250, 1),
+                                  child: Text(
+                                    controller.availableTimes[index1].time
+                                        .toString(),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(width: 8),
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width / 1.2,
+                              height:
+                                  index1 == 0 ? sizeHeight * 2.2 : sizeHeight,
+                              child: ListView.separated(
+                                //  physics: const NeverScrollableScrollPhysics(),
+                                scrollDirection: Axis.horizontal,
+                                separatorBuilder:
+                                    (BuildContext context, int index) =>
+                                        const SizedBox(width: 10),
+                                itemCount: 7,
+                                itemBuilder: (BuildContext context, int index) {
+                                  return Column(
+                                    children: [
+                                      if (index1 == 0)
+                                        SizedBox(
+                                          width: sizeWidth,
+                                          child: Text(
+                                            days[index],
+                                            style: const TextStyle(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w700,
+                                              color: Colors.black,
+                                            ),
+                                          ),
+                                        ),
+                                      Flexible(
+                                        child: InkWell(
+                                          onTap: () {
+                                            AlertDialogs alerts =
+                                                AlertDialogs();
+                                            controller.availableTimes[index1]
+                                                        .is_available ==
+                                                    true
+                                                ? libre(context)
+                                                : alerts.alerts(context);
+                                          },
+                                          child: Container(
+                                            alignment: Alignment.center,
+                                            width: sizeWidth,
+                                            height: index1 == 0
+                                                ? sizeHeight * 2
+                                                : sizeHeight, // sizeHeight,
+                                            color:
+                                                // ignore: unrelated_type_equality_checks
+                                                controller
+                                                            .availableTimes[
+                                                                index1]
+                                                            .is_available ==
+                                                        true
+                                                    ? const Color.fromRGBO(
+                                                        196, 235, 251, 1)
+                                                    : const Color.fromRGBO(
+                                                        147, 197, 250, 1),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  );
+                                },
+                              ),
+                            ),
+                          ],
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              );
+            }),
       ),
     );
-  }
 *//
