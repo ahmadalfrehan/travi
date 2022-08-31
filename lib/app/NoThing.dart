@@ -146,3 +146,23 @@ class _MonthDetailsState extends State<MonthDetails> {
     );
   }
 }
+//**
+container(String day, int id1) {
+    return InkWell(
+      onTap: () {
+        setState(() {
+          list.contains(id1) ? widget.list.remove(day) : widget.list.add(day);
+          list.contains(id1) ? list.remove(id1) : list.add(id1);
+          log(widget.list);
+        });
+      },
+      child: Container(
+        width: sizeWidth,
+        height: sizeHeight,
+        color: list.contains(id1)
+            ? const Color.fromRGBO(147, 197, 250, 1)
+            : const Color.fromRGBO(196, 235, 251, 1),
+      ),
+    );
+  }
+*//
